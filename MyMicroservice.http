@@ -1,0 +1,11 @@
+@MyMicroservice_HostAddress = http://localhost:5203
+
+# Obtener la lista de todos los Pokémon
+GET {{MyMicroservice_HostAddress}}/wather
+Accept: application/json
+
+###
+
+# Buscar un Pokémon por nombre (ejemplo con "Pikachu")
+GET {{MyMicroservice_HostAddress}}/wather/Pikachu
+Accept: application/json
