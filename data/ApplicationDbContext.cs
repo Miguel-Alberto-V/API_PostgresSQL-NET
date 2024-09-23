@@ -8,5 +8,6 @@ namespace MyMicroservice.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Articulo> Articulos { get; set; }
+        public DbSet<Visita> Visitas { get; set; }  // Agrega el DbSet para las visitas
     }
 }

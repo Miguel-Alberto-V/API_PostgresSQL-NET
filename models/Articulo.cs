@@ -13,4 +13,20 @@ namespace MyMicroservice.Models
         public DateTime fecha_creacion { get; set; } = DateTime.Now;
     }
 
+    [Table("visitas")]
+    public class Visita
+    {
+        public int id { get; set; }
+        public string? tipo_elemento { get; set; }
+        public int? id_elemento { get; set; }
+        public DateTime fecha_visita { get; set; }
+    }
+
+    public class ArticuloVisitaDto
+    {
+        public int Id { get; set; }
+        public string? Titulo { get; set; }
+        public int TotalVisitas { get; set; }
+    }
+
 }

@@ -36,3 +36,7 @@ D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\Microsoft.EntityFrameworkCore
 D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\Npgsql.dll
 D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Proyects Visual\MyMicroservice\obj\Debug\net8.0\MyMicroservice.sourcelink.json
+D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\RabbitMQ.Client.dll
+D:\Proyects Visual\MyMicroservice\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

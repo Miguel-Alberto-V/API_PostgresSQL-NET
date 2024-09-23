@@ -1,5 +1,12 @@
 using MyMicroservice.Data;
+using MyMicroservice.Services; 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models; // Para Swagger
+using Microsoft.AspNetCore.SignalR;
+using MyMicroservice.Hubs;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +23,14 @@ builder.Services.AddSwaggerGen();
 // Configura CORS para permitir cualquier origen
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowSpecificOrigin", builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("http://localhost:3000")
                .AllowAnyMethod()
-               .AllowAnyHeader();
+               .AllowAnyHeader()
+               .AllowCredentials();
     });
 });
-
 
 // Agrega servicios al contenedor
 builder.Services.AddControllers();
@@ -32,13 +39,22 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddSignalR();
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+// Habilitar CORS
+app.UseCors("AllowSpecificOrigin");
 
-// Configuración del pipeline de solicitudes HTTP
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+// Iniciar el consumidor de RabbitMQ
+var consumer = new RabbitMQConsumer(app.Services.GetRequiredService<IServiceScopeFactory>());
+consumer.StartConsuming();
+
+app.MapHub<VisitasHub>("/hubs/visitas");
 
 app.Run();
