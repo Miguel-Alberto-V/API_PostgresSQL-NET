@@ -34,6 +34,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
+app.UseCors("AllowAll");
+
 // Configuración del pipeline de solicitudes HTTP
 app.UseHttpsRedirection();
 app.UseAuthorization();
